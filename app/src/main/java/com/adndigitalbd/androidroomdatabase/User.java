@@ -10,7 +10,7 @@ import android.support.annotation.ColorInt;
 public class User {
 
     @PrimaryKey(autoGenerate = true)
-    private int id;
+    private int id = 0;
 
     @ColumnInfo(name = "user_name")
     private String name;

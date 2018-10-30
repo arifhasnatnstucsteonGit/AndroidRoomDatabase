@@ -40,11 +40,15 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 User user = new User();
-                user.setId(2);
-                user.setName("hasnat");
+                //user.setId(5);
+                user.setName("hasnat arif ");
                 user.setEmail("arifhasnat.info@gmail.com");
                 db.daoClass().addUser(user);
                 Toast.makeText(MainActivity.this, "Success", Toast.LENGTH_SHORT).show();
+
+
+//                deleteUser();
+//                updateUser();
 
             }
         });
@@ -60,6 +64,24 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, userList.get(i).getName().toString(), Toast.LENGTH_SHORT).show();
         }
 
+    }
+
+    private void deleteUser(){
+        User user = new User();
+        user.setId(3);
+        db.daoClass().deleteUser(user);
+
+        Toast.makeText(this, "Delete user", Toast.LENGTH_SHORT).show();
+    }
+
+    private void updateUser(){
+        User user = new User();
+        user.setId(4);
+        user.setEmail("arifhasnat.com@gmail.com");
+        user.setName("arif hasnat");
+        db.daoClass().updateUser(user);
+
+        Toast.makeText(this, "User Updated", Toast.LENGTH_SHORT).show();
     }
 
     @Override

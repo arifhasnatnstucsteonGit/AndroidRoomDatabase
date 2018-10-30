@@ -2,7 +2,6 @@ package com.adndigitalbd.androidroomdatabase.adapters;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,6 +34,17 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserHolder> {
     public void onBindViewHolder(@NonNull UserAdapter.UserHolder userHolder, int position) {
         userHolder.name.setText(userList.get(position).getName().toString());
         userHolder.email.setText(userList.get(position).getEmail().toString());
+
+
+        userHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+
+
+            }
+        });
     }
 
     @Override

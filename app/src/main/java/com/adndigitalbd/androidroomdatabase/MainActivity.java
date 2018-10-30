@@ -12,6 +12,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
 
 
@@ -35,15 +38,28 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 User user = new User();
-                user.setId(3);
-                user.setName("Arif");
+                user.setId(2);
+                user.setName("hasnat");
                 user.setEmail("arifhasnat.info@gmail.com");
                 db.daoClass().addUser(user);
                 Toast.makeText(MainActivity.this, "Success", Toast.LENGTH_SHORT).show();
 
             }
         });
+
+        getAllData();
+    }
+
+
+    private void getAllData(){
+        List<User> userList = new ArrayList<>();
+        userList=db.daoClass().getUsers();
+        for (int i = 0; i < userList.size(); i++) {
+            Toast.makeText(this, userList.get(i).getName().toString(), Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     @Override

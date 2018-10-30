@@ -8,7 +8,8 @@ import android.support.annotation.ColorInt;
 
 @Entity(tableName = "users")
 public class User {
-    @PrimaryKey
+
+    @PrimaryKey(autoGenerate = true)
     private int id;
 
     @ColumnInfo(name = "user_name")

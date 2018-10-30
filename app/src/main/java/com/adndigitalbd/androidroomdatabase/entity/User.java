@@ -1,4 +1,4 @@
-package com.adndigitalbd.androidroomdatabase;
+package com.adndigitalbd.androidroomdatabase.entity;
 
 
 import android.arch.persistence.room.ColumnInfo;

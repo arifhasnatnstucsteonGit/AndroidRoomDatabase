@@ -1,16 +1,22 @@
-package com.adndigitalbd.androidroomdatabase;
+package com.adndigitalbd.androidroomdatabase.activities;
 
 import android.arch.persistence.room.Room;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
+
+import com.adndigitalbd.androidroomdatabase.R;
+import com.adndigitalbd.androidroomdatabase.adapters.UserAdapter;
+import com.adndigitalbd.androidroomdatabase.database.DatabaseClass;
+import com.adndigitalbd.androidroomdatabase.entity.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +26,11 @@ public class MainActivity extends AppCompatActivity {
 
     DatabaseClass db;
 
+    private RecyclerView mRecyclerView;
+    public UserAdapter mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
+    List<User> userList;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,9 +39,20 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        mRecyclerView = (RecyclerView)findViewById(R.id.recyclerview);
+        mRecyclerView.setHasFixedSize(true);
+        mLayoutManager = new LinearLayoutManager(MainActivity.this);
+        mRecyclerView.setLayoutManager(mLayoutManager);
 
         db = Room.databaseBuilder(getApplicationContext(),
                 DatabaseClass.class, "myDatabase").allowMainThreadQueries().build();
+        getAllData();
+
+
+
+
+
+
 
 
 
@@ -44,6 +66,9 @@ public class MainActivity extends AppCompatActivity {
                 user.setName("hasnat arif ");
                 user.setEmail("arifhasnat.info@gmail.com");
                 db.daoClass().addUser(user);
+
+                mAdapter.notifyDataSetChanged();
+
                 Toast.makeText(MainActivity.this, "Success", Toast.LENGTH_SHORT).show();
 
 
@@ -53,16 +78,23 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        getAllData();
+
     }
 
 
     private void getAllData(){
         List<User> userList = new ArrayList<>();
         userList=db.daoClass().getUsers();
-        for (int i = 0; i < userList.size(); i++) {
-            Toast.makeText(this, userList.get(i).getName().toString(), Toast.LENGTH_SHORT).show();
+
+        if (userList.size()>0){
+            mAdapter = new UserAdapter(userList);
+            mRecyclerView.setAdapter(mAdapter);
+
+        }else {
+            Toast.makeText(this, "No data ", Toast.LENGTH_SHORT).show();
         }
+     
+
 
     }
 

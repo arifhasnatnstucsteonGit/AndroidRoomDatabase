@@ -1,5 +1,7 @@
 package com.adndigitalbd.androidroomdatabase;
 
+import android.arch.persistence.room.Room;
+import android.arch.persistence.room.RoomDatabase;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -11,13 +13,16 @@ import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity {
 
+
+    DatabaseClass roomDatabase;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        roomDatabase = Room.databaseBuilder(MainActivity.this,DatabaseClass.class,"userdb").build();
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override

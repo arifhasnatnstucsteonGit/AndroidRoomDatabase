@@ -28,14 +28,14 @@
                 android:textSize="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Arif Hasnat " />
+                android:text=" " />
 
             <TextView
                 android:id="@+id/email"
                 android:textSize="12dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="arif@gam.com" />
+                android:text="" />
         </LinearLayout>
     </android.support.v7.widget.CardView>
 
